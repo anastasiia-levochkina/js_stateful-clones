@@ -1,5 +1,4 @@
 'use strict';
-
 function transformStateWithClones(state, actions) {
   let prev = { ...state };
   const history = [];
@@ -11,15 +10,16 @@ function transformStateWithClones(state, actions) {
       next = {};
     } else if (action.type === 'addProperties') {
       const extra =
-        action.extraData && typeof action.extraData === 'object'
+        action.extraData &&
+        typeof action.extraData === 'object'
           ? action.extraData
           : {};
       next = { ...prev, ...extra };
     } else if (action.type === 'removeProperties') {
-      next = { ...prev };
       const keys = Array.isArray(action.keysToRemove)
         ? action.keysToRemove
         : [];
+      next = { ...prev };
       for (const key of keys) {
         delete next[key];
       }
@@ -34,5 +34,5 @@ function transformStateWithClones(state, actions) {
   return history;
 }
 
-module.exports = transformStateWithClones;                 // default export
-module.exports.transformStateWithClones = transformStateWithClones; // also allow named
+module.exports = transformStateWithClones;
+module.exports.transformStateWithClones = transformStateWithClones;

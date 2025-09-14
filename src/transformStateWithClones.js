@@ -34,4 +34,5 @@ function transformStateWithClones(state, actions) {
   return history;
 }
 
-module.exports = { transformStateWithClones };
+module.exports = transformStateWithClones;                 // default export
+module.exports.transformStateWithClones = transformStateWithClones; // also allow named
